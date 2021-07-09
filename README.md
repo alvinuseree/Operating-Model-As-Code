@@ -44,4 +44,8 @@ On execution, the Application runs a series of tests before executing logic. The
 
 
 ## To Do:
+- [ ] Add test to confirm JSON Schemas are correct in the data
 
+
+## Known Issues:
+* If the user triggers a `partial-sync` using incorrect credentials for the console, the code fails even though the partial sync does not interact with the console.
