@@ -3,7 +3,7 @@
     src="https://img.shields.io/badge/Python-3.9.0-blue.svg" style="padding-bottom: 5px; float: left; margin-right: 5px">
 
 <img 
-    src="https://img.shields.io/badge/Beta-0.1-red.svg" style="padding-bottom: 5px">
+    src="https://img.shields.io/badge/Beta-0.1-red.svg" style="padding-bottom: 5px;">
 
 Operating Model as Code is a mechanism at which we can refresh and update the Kubrick **Collibra** Operating Model used for Data Management Cohorts in an automated and governed manner.
 
@@ -16,17 +16,17 @@ The user can run the file `setup.py` to install the the required dependencies fo
 ### Help:
 Run the following instruction for help:
 ```cmd
-op-model/op-model.py --gethelp
+python op-model/op-model.py -g getHelp
 ```
 ### Full-Sync:
 Run the following instruction to run a full synchronisation of the operating model:
 ```cmd
-op-model/op-model.py --full-sync
+python op-model/op-model.py -f fullSync
 ```
 ### Partial-Sync:
 Run the following instruction to not run a restore of the database and instead add content to your existing operating model:
 ```cmd
-op-model/op-model.py --partial-sync
+python op-model/op-model.py -p partialSync
 ```
 
 ## Tests:

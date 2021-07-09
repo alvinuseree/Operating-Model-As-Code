@@ -29,10 +29,13 @@ root.setLevel(logging.DEBUG)
 
 #Set Argparse instance:
 parser = argparse.ArgumentParser(description='Operating Model as Code is a mechanism at which we can refresh and update the Kubrick Collibra Operating Model used for Data Management Cohorts in an automated and governed manner.')
-parser.add_argument('-o', '--gethelp', nargs='?', const='arg_was_not_given', help='used to get help on how to use this')
+parser.add_argument('-g', '--getHelp', help='used to get help on how to use this')
+parser.add_argument('-p', '--partialSync', help='used to indicate if the user wants to refresh the instance')
+parser.add_argument('-f', '--fullSync', help='used to a full sychronisation of the op model')
+
 args = parser.parse_args()
 
-if args.gethelp is None:
+if args.fullSync is not None:
     #Tests to confirm path files exist & Valid Json:
     logging.info("Confirming Directory is not Corrupted ...")
     pytest.main([
@@ -75,9 +78,16 @@ if args.gethelp is None:
     #Test Connection to the Cloud:
     restoreEnvironment(instanceInfo['console'], consoleUserName, consolePassword, instanceInfo['backup-id'], instanceInfo['environment-id'])
 
+elif args.partialSync is not None:
+    print(
+        """
+        Thank you for using this application.
+        You can find the repo for this app here: https://gitlab.com/Alvin.Useree/operating-model-as-code/"""
+    )
+
 else:
     print(
         """
         Thank you for using this application.
-        You can find the repo for this app here: https://stackoverflow.com/questions/15754208/how-to-make-argument-optional-in-python-argparse"""
+        You can find the repo for this app here: https://gitlab.com/Alvin.Useree/operating-model-as-code/"""
     )
