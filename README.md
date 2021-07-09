@@ -10,7 +10,9 @@ Operating Model as Code is a mechanism at which we can refresh and update the Ku
 ## Installation:
 The Application comes with an associated requirements.txt file.
 
-The user can run the file `setup.py` to install the the required dependencies for the application.
+```cmd
+pip install requirements.txt
+```
 
 ## Executing:
 ### Help:
