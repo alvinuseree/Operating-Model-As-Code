@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "first-name": "Alvin",
+            "last-name": "Useree",
+            "email": "alvinuseree@kubrickgroup.com",
+            "user-type": "Trainer"
+        },
+        {
+            "first-name": "Mark",
+            "last-name": "Thacker",
+            "email": "markthacker@kubrickgroup.com",
+            "user-type": "Trainer"
+        }        
+    ]
+}
