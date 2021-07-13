@@ -6,6 +6,25 @@
             "instructions": "Upload this to the files section of this Asset",
             "description": "Please Create a Community blah blah",
             "tags": ["Data-Management", "Metamodel"]
-        }
+        },
+        {
+            "name": "Exercise 2",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 3",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 4",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        }        
+
     ]
 }

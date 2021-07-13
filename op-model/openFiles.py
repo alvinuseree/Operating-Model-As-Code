@@ -25,4 +25,4 @@ def openUsers():
         jsonObject = json.load(jsonFile)
         jsonFile.close()
         
-        return "anything"
+        return jsonObject

@@ -44,8 +44,10 @@ On execution, the Application runs a series of tests before executing logic. The
 
 
 ## To Do:
+- [ ] Need a pre-emptive way of determining that every Object to be imported is unique both in the code and within the Data Intelligence Cloud BEFORE the flow is executed
 - [ ] Add test to confirm JSON Schemas are correct in the data
-
+- [ ] Split Data Intelligence Cloud and Console tests into 2 files
+- [ ] Think about how profile assets can be related to Exercises
 
 ## Known Issues:
 * If the user triggers a `partial-sync` using incorrect credentials for the console, the code fails even though the partial sync does not interact with the console.
