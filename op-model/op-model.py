@@ -137,7 +137,7 @@ if args.getHelp is None:
         baseUserName,
         basePassword,
         "Certifications",
-        certInfo['doimain-uuid'],
+        certInfo['domain-uuid'],
         communityIds[0],
         "Certs"
     )['id']     

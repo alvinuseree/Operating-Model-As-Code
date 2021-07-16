@@ -38,7 +38,7 @@ def openCerts():
         return jsonObject   
 
 def openExercises():
-    with open("assets/exercies.json") as jsonFile:
+    with open("assets/exercises.json") as jsonFile:
         #Check Valid Json:
         jsonObject = json.load(jsonFile)
         jsonFile.close()
