@@ -40,7 +40,7 @@ def createDomain(baseUrl, userName, password, domainName, domainType, communityI
         }
 
     newDomain = requests.post(baseUrl + endpoint, json = domainBody, auth=(userName, password))
-    logging.info(' Domain' + domainName + ' created completed with Code:' + str(newDomain.status_code))      
+    logging.info(' Domain: ' + domainName + ' created completed with Code:' + str(newDomain.status_code))      
     return newDomain.json()
 
 def createCommunity(baseUrl, userName, password, parentCommunity, communityName, description):
@@ -61,50 +61,5 @@ def createCommunity(baseUrl, userName, password, parentCommunity, communityName,
             "description": description
             }
     newCommunity = requests.post(baseUrl + endpoint, json = communityBody, auth=(userName, password))
-    logging.info(' Community' + communityName + ' created completed with Code:' + str(newCommunity.status_code))
+    logging.info(' Community: ' + communityName + ' created completed with Code:' + str(newCommunity.status_code))
     return newCommunity.json()
-
-# Test Code:
-conId = createCommunity(
-    "https://kubrick-test.collibra.com/",
-    "useree_sysAdmin",
-    "Collibra43210",
-    "none",
-    "Data Managment Consultant Communities",
-    "Home to all DM Consultants"
-)['id']
-#Create Community:
-for w in range(20):
-    commId = createCommunity(
-        "https://kubrick-test.collibra.com/",
-        "useree_sysAdmin",
-        "Collibra43210",
-        conId,
-        "Consultant " + str(w),
-        "Consultant " + str(w) + "s personal Community"
-    )['id']
-
-    domId = createDomain(
-        "https://kubrick-test.collibra.com/",
-        "useree_sysAdmin",
-        "Collibra43210",
-        "Consultant " + str(w) + " Business Glossary",
-        "00000000-0000-0000-0000-000000010001",
-        commId,
-        "Consultant " + str(w) + "s personal glossary of terms"
-    )['id']
-
-    assetId = createAsset(
-        "https://kubrick-test.collibra.com/",
-        "useree_sysAdmin",
-        "Collibra43210",
-        "Consultant " + str(w) + " Business Term",
-        "00000000-0000-0000-0000-000000011001",
-        domId,
-        [{
-            "typeId": "00000000-0000-0000-0000-000000000202",
-            "value": "This consultant is called" + str(w)
-        }],
-        []
-    )['id']
-    print(w)

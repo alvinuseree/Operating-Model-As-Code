@@ -5,6 +5,7 @@ import os
 import pytest
 from openFiles import *
 from consoleOperations import *
+from createObject import *
 import argparse
 import sys
 
@@ -38,21 +39,28 @@ parser.add_argument('-f', '--fullSync', help='used to a full sychronisation of t
 args = parser.parse_args()
 
 #Test to confirm: Only 1 arg has been passed:
-if len(sys.argv) > 1:
+if len(sys.argv) != 3:
+    logging.info(len(sys.argv))
     logging.error("To run this application you need to pass one of 3 arguments: -g getHelp, -p partialSync or -f fullSync")
     sys.exit()
 
-if args.fullSync is not None:
+#If the getHelp arg is not passed then we run some basic tests on the some of the configurations
+if args.getHelp is None:
+
     #Tests to confirm path files exist & Valid Json:
     logging.info("Confirming Directory is not Corrupted ...")
-    pytest.main([
+    assert pytest.main([
         "tests/correctStructure.py", 
         "tests/validJson.py"
-    ])
+    ]) == 0
 
     #Read files:
     instanceInfo = openInstance()
     userInfo = openUsers()
+
+    articleInfo = openArticles()
+    certInfo = openCerts()
+    exerciseInfo = openExercises()
 
     #Grab credentials from the user:
     logging.info(' Please ensure that your credentials exist in the clean backup')
@@ -66,31 +74,74 @@ if args.fullSync is not None:
     logging.info(' Testing Connectivity ...')
 
     #Arguments:
-    baseArg = "--baseUrl=" + instanceInfo['base']
-    consoleArg = "--consoleUrl=" + instanceInfo['console']
+    baseArg = "--baseUrl=" + instanceInfo['application']['url']
+    consoleArg = "--consoleUrl=" + instanceInfo['console']['url']
     iUserArg = "--iUser=" + baseUserName
     iPassArg = "--iPass=" + basePassword
     cUserArg = "--cUser=" + consoleUserName
     cPassArg = "--cPass=" + consolePassword
 
-    connectionTest = pytest.main([
+    assert pytest.main([
         "-x", 
         "--tb=line", 
         "tests/testConnection.py", 
         baseArg, consoleArg, iUserArg, iPassArg, cUserArg, cPassArg
-    ])       
+    ]).value == 0       
     #-x and tb-line ensures end after 1 fail and only show results
-    print(connectionTest)
 
-    #Test Connection to the Cloud:
-    restoreEnvironment(instanceInfo['console'], consoleUserName, consolePassword, instanceInfo['backup-id'], instanceInfo['environment-id'])
+    #Full Sync entails a restoration of the environment before creating the op model
+    if args.fullSync is not None:
+        restoreEnvironment(instanceInfo['console']['url'], consoleUserName, consolePassword, instanceInfo['console']['backup-id'], instanceInfo['console']['environment-id'])
 
-elif args.partialSync is not None:
+    #Create Op-Model:
     #Qseudo Code:
     #Naming Convention - [First Name Last Name - Object]
-    # 1: Add parent communities: Collibra Documentation, Consultant Communities, Configurations
-    # In Configurations Community, create a domain called [Profiles]
-    # In Collibra Documentation
+
+    #Add parent communities: Collibra Documentation, Consultant Communities, Configurations
+    communityIds = []
+
+    for tpCommunity in instanceInfo['top-level']:
+        communityIds.append(createCommunity(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            "none",
+            tpCommunity['name'],
+            tpCommunity['description']
+        )['id'])
+      
+    # In Configurations Community, create a domain called [Profiles]:
+    profileDomain = createDomain(
+        instanceInfo['application']['url'],
+        baseUserName,
+        basePassword,
+        "Profiles",
+        userInfo['domain-uuid'],
+        communityIds[1],
+        "Consultant Profiles"
+    )['id']
+
+    # In Collibra Documentation create Articles and Certifications Domain
+    articlesDomain = createDomain(
+        instanceInfo['application']['url'],
+        baseUserName,
+        basePassword,
+        "Articles",
+        articleInfo['domain-uuid'],
+        communityIds[0],
+        "List of Articles"
+    )['id']
+
+    certsDomain = createDomain(
+        instanceInfo['application']['url'],
+        baseUserName,
+        basePassword,
+        "Certifications",
+        certInfo['doimain-uuid'],
+        communityIds[0],
+        "Certs"
+    )['id']     
+
     # 2: For every User in file: 
         # Create a user with the permissions set in the file
         # Add Profile Asset to Profiles Domain - [First Name Last Name - Profile]
@@ -99,12 +150,9 @@ elif args.partialSync is not None:
         # 3: For every Exercise in file:
             # Add Exercise to First Name Last Name - Exercises called [Exercise Name]
     # 4: For every Article in file:
-        # 
-    print(
-        """
-        Thank you for using this application.
-        You can find the repo for this app here: https://gitlab.com/Alvin.Useree/operating-model-as-code/"""
-    )
+        # Add article to Articles Domain - [Article Name]
+    # 5: For every Certification in file:
+        # Add Certification to Cert Domain - [Cert Name]
 
 #User goes down this path if they pass no arguements
 else:

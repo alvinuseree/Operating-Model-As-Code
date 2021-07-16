@@ -1,6 +1,7 @@
 import requests
 import json
 import pytest
+import sys
 
 def test_check_instance_up(baseUrl):
     """Used to check if the instance is running"""
@@ -22,11 +23,16 @@ def test_instance_credentials(baseUrl, iUser, iPass):
     postSession = {
         "username": iUser,
         "password": iPass
-    }  
-
-    instance = requests.post(baseUrl + "rest/2.0/auth/sessions", json = postSession)
-    assert instance.status_code == 200
+    }
+    try:
+        instance = requests.post(baseUrl + "rest/2.0/auth/sessions", json = postSession)
+        assert instance.status_code == 200
+    except:
+        pytest.fail("Incorrect Application Credentials") 
 
 def test_console_credentials(consoleUrl, cUser, cPass):
-    instance = requests.get(consoleUrl + "rest/environment", auth = (cUser, cPass))
-    assert instance.status_code == 200    
+    try:
+        instance = requests.get(consoleUrl + "rest/environment", auth = (cUser, cPass))
+        assert instance.status_code == 200   
+    except: 
+        pytest.fail("Incorrect Console Credentials") 

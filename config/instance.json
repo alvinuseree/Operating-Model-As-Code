@@ -7,8 +7,15 @@
         "backup-id": "546a0b61-a221-4e55-8399-a4d0a97097e2",
         "environment-id": "4eecbdd0-aab6-4e6f-9d96-c716034a67e6"
     },
-    "cohort": {
-        "name": "DM 06",
-        "description": "Welcome Data Management 06 to Collibra"
-    }
+    "top-level": [{
+            "name": "Collibra Documentation",
+            "description": "Community containing useful Collibra Documentation"
+        },{
+            "name": "Configurations",
+            "description": "Op-Model Configurations"
+        },{
+            "name": "DM 06",
+            "description": "Welcome Data Management 06 to Collibra"
+        }
+    ]      
 }

@@ -18,5 +18,4 @@ def test_checkAllFiles_valid():
                         jsonObject = json.load(jsonFile)
                         jsonFile.close()
                     except ValueError as e:
-                        pytest.fail(file + " has invalid Json ...")  
-                        sys.exit()
+                        pytest.fail(file + " has invalid Json ...")
