@@ -84,6 +84,7 @@ if args.getHelp is None:
     cUserArg = "--cUser=" + consoleUserName
     cPassArg = "--cPass=" + consolePassword
 
+    #Testing Credentials the user has provided
     assert pytest.main([
         "-x", 
         "--tb=line", 
@@ -91,6 +92,17 @@ if args.getHelp is None:
         baseArg, consoleArg, iUserArg, iPassArg, cUserArg, cPassArg
     ]).value == 0       
     #-x and tb-line ensures end after 1 fail and only show results
+
+    userInfoArg = "--userInfo=" + str(userInfo)
+    instanceArg = "--instanceInfo=" + str(instanceInfo)
+
+    #Test to see if all required Objects are Unique
+    assert pytest.main([
+        "-x", 
+        "--tb=line", 
+        "tests/checkObjectUnique.py", 
+        baseArg, iUserArg, iPassArg, userInfoArg, instanceArg
+    ]).value == 0      
 
     #Full Sync entails a restoration of the environment before creating the op model
     if args.fullSync is not None:
@@ -102,12 +114,22 @@ if args.getHelp is None:
     #Add parent communities: Collibra Documentation, Consultant Communities, Configurations
     communityIds = []
 
+    #Add container Community for all the op-model content
+    containerCommunity = createCommunity(
+        instanceInfo['application']['url'],
+        baseUserName,
+        basePassword,
+        "none",
+        "Container",
+        "Temporary Container Community"
+    )['id']
+
     for tpCommunity in instanceInfo['top-level']:
         communityIds.append(createCommunity(
             instanceInfo['application']['url'],
             baseUserName,
             basePassword,
-            "none",
+            containerCommunity,
             tpCommunity['name'],
             tpCommunity['description']
         )['id'])
@@ -172,6 +194,8 @@ if args.getHelp is None:
             consultant['first-name'] + ' ' + consultant['last-name'],
             consultant['first-name'] + ' ' + consultant['last-name'] + "'s personal community"
         )['id']
+
+        #Give Profile Permissions on Community:
 
         # Add domains: [First Name Last Name - Exercises] in First Name Last Name Community
         consultantExerciseDomain = createDomain(

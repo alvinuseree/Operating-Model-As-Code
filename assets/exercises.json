@@ -25,7 +25,54 @@
             "instructions": "Upload this to the files section of this Asset",
             "description": "Please Create a Community blah blah",
             "tags": ["Data-Management", "Metamodel"]
-        }        
-
+        },
+        {
+            "name": "Exercise 5",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },                  
+        {
+            "name": "Exercise 6",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 7",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 8",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 9",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 10",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Exercise 11",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },                  
+        {
+            "name": "Exercise 12",
+            "instructions": "Upload this to the files section of this Asset",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        }
     ]
 }

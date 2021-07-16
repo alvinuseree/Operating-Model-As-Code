@@ -31,7 +31,17 @@ def pytest_addoption(parser):
     parser.addoption(
         "--cPass",
         action="store"
-    )                   
+    ) 
+
+    parser.addoption(
+        "--userInfo",
+        action="store"
+    )   
+
+    parser.addoption(
+        "--instanceInfo",
+        action="store"
+    )                             
 
 @fixture()
 def baseUrl(request):
@@ -55,4 +65,12 @@ def cUser(request):
 
 @fixture()
 def cPass(request):
-    return request.config.getoption("--cPass")        
+    return request.config.getoption("--cPass")  
+
+@fixture()
+def userInfo(request):
+    return request.config.getoption("--userInfo")
+
+@fixture()
+def instanceInfo(request):
+    return request.config.getoption("--instanceInfo")         

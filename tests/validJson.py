@@ -13,7 +13,7 @@ def test_checkAllFiles_valid():
         for file in Files:
             with open(folder + "/" + file) as jsonFile:
                 if os.path.getsize(folder + "/" + file) > 0:
-                    logging.info("Checking: " + file)
+                    logging.info("Checked: " + file)
                     try:
                         jsonObject = json.load(jsonFile)
                         jsonFile.close()

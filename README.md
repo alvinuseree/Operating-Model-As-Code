@@ -52,6 +52,7 @@ On execution, the Application runs a series of tests before executing logic. The
 - [ ] Think about how profile assets can be related to Exercises
 - [ ] Think about how a certification path can link back to a profile asset
 - [ ] For ease of use, need to create all the content in a dummy container. If the flow fails, the user can simply delete the container and rerun. At the end of the flow, move all the content to the top and delete the container
+- [ ] Handle errors a bit better - can just grab json response body from call?
 
 ## Known Issues:
 * If the user triggers a `partial-sync` using incorrect credentials for the console, the code fails even though the partial sync does not interact with the console.
