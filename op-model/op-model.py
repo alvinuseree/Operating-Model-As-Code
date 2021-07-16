@@ -1,13 +1,16 @@
-import json
-import logging
-import getpass
-import os
-import pytest
-from openFiles import *
-from consoleOperations import *
-from createObject import *
-import argparse
-import sys
+import json                                 #Used to parse Json config files
+import logging                              #Logging library
+import getpass                              #Hides password when grabbed from user
+import os                                   #
+import pytest                               #Runs tests on application on run 
+import argparse                             #Grabs arguements on run
+import sys                                  #sys(exit) used to stop flow under certain conditions
+
+#Custom python files:
+from openFiles import *                     #Opens all config and asset files
+from consoleOperations import *             #Allows us to run our operations on the Collibra Console
+from createObject import *                  #Creates Collibra Objects (Assets, Users, Domains etc)
+
 
 """ 
 Description:    Main script that runs modules to create and add content to the existing colibra operating model.
