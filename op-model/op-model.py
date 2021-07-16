@@ -94,7 +94,6 @@ if args.getHelp is None:
         restoreEnvironment(instanceInfo['console']['url'], consoleUserName, consolePassword, instanceInfo['console']['backup-id'], instanceInfo['console']['environment-id'])
 
     #Create Op-Model:
-    #Qseudo Code:
     #Naming Convention - [First Name Last Name - Object]
 
     #Add parent communities: Collibra Documentation, Consultant Communities, Configurations
@@ -142,13 +141,65 @@ if args.getHelp is None:
         "Certs"
     )['id']     
 
-    # 2: For every User in file: 
+    # For every User in file:
+    for consultant in userInfo['users']: 
         # Create a user with the permissions set in the file
-        # Add Profile Asset to Profiles Domain - [First Name Last Name - Profile]
+
+        # Add Profile Asset to Profiles Domain - [First Name Last Name]
+        createAsset(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            consultant['first-name'] + ' ' + consultant['last-name'],
+            exerciseInfo['uuid'],
+            profileDomain,
+            [{
+                "typeId": "00000000-0000-0000-0000-000000000202",
+                "value": "This consultant is has permissions for: " + consultant['user-type']
+            }],
+            []
+        )['id']
+
         # Add Community in Consultant Communities -  [First Name Last Name Community]
+        consultantCommunity = createCommunity(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            communityIds[2],
+            consultant['first-name'] + ' ' + consultant['last-name'],
+            consultant['first-name'] + ' ' + consultant['last-name'] + "'s personal community"
+        )['id']
+
         # Add domains: [First Name Last Name - Exercises] in First Name Last Name Community
+        consultantExerciseDomain = createDomain(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            consultant['first-name'] + ' ' + consultant['last-name'] + ' Exercises',
+            exerciseInfo['domain-uuid'],
+            consultantCommunity,
+            "You'll find all your exercises here"
+        )['id']
+
         # 3: For every Exercise in file:
-            # Add Exercise to First Name Last Name - Exercises called [Exercise Name]
+        for exercises in exerciseInfo['exercises']:
+            # Add Exercise to First Name Last Name - Exercises called [Exercise Name]            
+            createAsset(
+                instanceInfo['application']['url'],
+                baseUserName,
+                basePassword,
+                exercises['name'],
+                exerciseInfo['uuid'],
+                consultantExerciseDomain,
+                [{
+                    "typeId": "00000000-0000-0000-0000-000000000202",
+                    "value": exercises['description']
+                },{
+                    "typeId": "00000000-0000-0000-0000-000000003115",
+                    "value": exercises['instructions']
+                },],
+                []
+            )['id']            
     # 4: For every Article in file:
         # Add article to Articles Domain - [Article Name]
     # 5: For every Certification in file:
