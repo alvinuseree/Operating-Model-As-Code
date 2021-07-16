@@ -184,7 +184,7 @@ if args.getHelp is None:
             "You'll find all your exercises here"
         )['id']
 
-        # 3: For every Exercise in file:
+        # For every Exercise in file:
         for exercises in exerciseInfo['exercises']:
             # Add Exercise to First Name Last Name - Exercises called [Exercise Name]            
             createAsset(
