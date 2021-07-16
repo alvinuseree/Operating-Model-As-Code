@@ -45,10 +45,13 @@ On execution, the Application runs a series of tests before executing logic. The
 
 ## To Do:
 - [ ] Need a pre-emptive way of determining that every Object to be imported is unique both in the code and within the Data Intelligence Cloud BEFORE the flow is executed
+    * Communities Must be unique
+    * Users must be unique
 - [ ] Add test to confirm JSON Schemas are correct in the data
 - [ ] Split Data Intelligence Cloud and Console tests into 2 files
 - [ ] Think about how profile assets can be related to Exercises
 - [ ] Think about how a certification path can link back to a profile asset
+- [ ] For ease of use, need to create all the content in a dummy container. If the flow fails, the user can simply delete the container and rerun. At the end of the flow, move all the content to the top and delete the container
 
 ## Known Issues:
 * If the user triggers a `partial-sync` using incorrect credentials for the console, the code fails even though the partial sync does not interact with the console.
