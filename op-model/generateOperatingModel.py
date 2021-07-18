@@ -79,7 +79,7 @@ def generateOpmodel(baseUserName, basePassword, instanceInfo, userInfo, articleI
             baseUserName,
             basePassword,
             consultant['first-name'] + ' ' + consultant['last-name'],
-            exerciseInfo['uuid'],
+            userInfo['uuid'],
             profileDomain,
             [{
                 "typeId": "00000000-0000-0000-0000-000000000202",
