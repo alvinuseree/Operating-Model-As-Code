@@ -63,3 +63,44 @@ def createCommunity(baseUrl, userName, password, parentCommunity, communityName,
     newCommunity = requests.post(baseUrl + endpoint, json = communityBody, auth=(userName, password))
     logging.info(' Community: ' + communityName + ' created completed with Code:' + str(newCommunity.status_code))
     return newCommunity.json()
+
+def createUser(baseUrl, userName, password, firstName, lastname, usersName, permissions, email):
+    endpoint = "rest/2.0/users"
+    userBody = {}
+
+    if permissions == 'Trainer':
+        userBody = {
+            "userName": usersName,
+            "firstName": firstName,
+            "lastName": lastname,
+            "emailAddress": email,
+            "userGroupIds": [
+                "baba2bd1-c019-4a87-980f-fa509450da65"
+            ]
+        }
+
+    else:
+        userBody = {
+            "userName": usersName,
+            "firstName": firstName,
+            "lastName": lastname,
+            "emailAddress": email
+        }        
+
+    newUser = requests.post(baseUrl + endpoint, json = userBody, auth=(userName, password))
+    logging.info(' User: ' + usersName + ' created completed with Code:' + str(newUser.status_code))
+    return newUser.json()
+
+def createResponsibility(baseUrl, userName, password, usersId, roleId, objectId, resourceType):
+    endpoint = "rest/2.0/responsibilities"
+
+    respBody = {
+        "roleId": roleId,
+        "ownerId": usersId,
+        "resourceId": objectId,
+        "resourceType": resourceType
+    }
+
+    newResp = requests.post(baseUrl + endpoint, json = respBody, auth=(userName, password))
+    logging.info(' Role: ' + roleId + ' created completed with Code:' + str(newResp.status_code))
+    return newResp.json()

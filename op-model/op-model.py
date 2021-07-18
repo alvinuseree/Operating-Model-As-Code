@@ -169,6 +169,16 @@ if args.getHelp is None:
     # For every User in file:
     for consultant in userInfo['users']: 
         # Create a user with the permissions set in the file
+        newUser = createUser(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            consultant['first-name'],
+            consultant['last-name'],
+            consultant['first-name'] + '.' + consultant['last-name'],
+            consultant['user-type'],
+            consultant['email']
+        )['id']
 
         # Add Profile Asset to Profiles Domain - [First Name Last Name]
         createAsset(
@@ -183,7 +193,7 @@ if args.getHelp is None:
                 "value": "This consultant is has permissions for: " + consultant['user-type']
             }],
             []
-        )['id']
+        )
 
         # Add Community in Consultant Communities -  [First Name Last Name Community]
         consultantCommunity = createCommunity(
@@ -195,7 +205,16 @@ if args.getHelp is None:
             consultant['first-name'] + ' ' + consultant['last-name'] + "'s personal community"
         )['id']
 
-        #Give Profile Permissions on Community:
+        #Give Profile Permissions on Consultant Community:
+        createResponsibility(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            newUser,
+            instanceInfo['permissions']['owner'],
+            consultantCommunity,
+            "Community"
+        )
 
         # Add domains: [First Name Last Name - Exercises] in First Name Last Name Community
         consultantExerciseDomain = createDomain(
@@ -229,8 +248,23 @@ if args.getHelp is None:
             )['id']            
     # 4: For every Article in file:
         # Add article to Articles Domain - [Article Name]
-    # 5: For every Certification in file:
+
+    # For every Certification in file:
+    for certification in certInfo['certifications']:
         # Add Certification to Cert Domain - [Cert Name]
+        createAsset(
+            instanceInfo['application']['url'],
+            baseUserName,
+            basePassword,
+            certification['name'],
+            certInfo['uuid'],
+            certsDomain,
+            [{
+                "typeId": "00000000-0000-0000-0000-000000000202",
+                "value": certification['description']
+            }],
+            []
+        )['id']          
 
 #User goes down this path if they pass no arguements
 else:

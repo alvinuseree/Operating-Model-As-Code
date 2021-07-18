@@ -1,4 +1,16 @@
 {
     "domain-uuid": "00000000-0000-0000-0000-000000010001",
-    "uuid": "00000000-0000-0000-0000-000000011001"
+    "uuid": "00000000-0000-0000-0000-000000011001",
+    "certifications": [
+        {
+            "name": "Collibra Ranger",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        },
+        {
+            "name": "Collibra Solution Architect",
+            "description": "Please Create a Community blah blah",
+            "tags": ["Data-Management", "Metamodel"]
+        }
+    ]
 }

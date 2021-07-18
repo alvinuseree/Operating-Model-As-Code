@@ -4,7 +4,6 @@ import pytest
 import sys
 import logging
 
-
 def test_checkCommunity(userInfo, instanceInfo, baseUrl, iUser, iPass):
     """Used to check if all communities are unique"""
     logging.info("Checked: " + instanceInfo)
