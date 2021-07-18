@@ -26,8 +26,8 @@ def createAsset(baseUrl, userName, password, assetName, assetType, domainId, att
     if len(attributes) != 0:
         for i in range(len(attributes)):
             attributes[i]['assetId'] = newAssetId
-            addAttributes = requests.post(baseUrl + "rest/2.0/attributes/bulk", json = attributes, auth=(userName, password))
-            logging.info(' Attribute' + str(attributes) + ' created completed with Code:' + str(addAttributes.status_code)) 
+        addAttributes = requests.post(baseUrl + "rest/2.0/attributes/bulk", json = attributes, auth=(userName, password))
+        logging.info(' Attribute' + str(attributes) + ' created completed with Code:' + str(addAttributes.status_code)) 
     return newAsset.json()
 
 def createDomain(baseUrl, userName, password, domainName, domainType, communityId, description):
