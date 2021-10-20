@@ -37,6 +37,7 @@ parser = argparse.ArgumentParser(description='Operating Model as Code is a mecha
 parser.add_argument('-g', '--getHelp', help='used to get help on how to use this')
 parser.add_argument('-p', '--partialSync', help='used to indicate if the user wants to refresh the instance')
 parser.add_argument('-f', '--fullSync', help='used to a full sychronisation of the op model')
+parser.add_argument('-a', '--assess', help='used to deploy automated assessment')
 
 args = parser.parse_args()
 
@@ -70,13 +71,17 @@ if args.getHelp is None:
     if args.fullSync is not None:
         restoreEnvironment(instanceInfo['console']['url'], consoleUserName, consolePassword, instanceInfo['console']['backup-id'], instanceInfo['console']['environment-id'])
 
-    #Generate the complete Operating Model
-    generateOpmodel(baseUserName, basePassword, instanceInfo, userInfo, articleInfo, certInfo, exerciseInfo)          
+    if args.assess is None:
+        #Generate the complete Operating Model
+        generateOpmodel(baseUserName, basePassword, instanceInfo, userInfo, articleInfo, certInfo, exerciseInfo)    
+
+    else:
+        print("Automate!")      
 
 #User goes down this path if they pass no arguements
 else:
     print(
-        """
-        Thank you for using this application.
-        You can find the repo for this app here: https://gitlab.com/Alvin.Useree/operating-model-as-code/"""
-    )
+            """
+            Thank you for using this application.
+            You can find the repo for this app here: https://gitlab.com/Alvin.Useree/operating-model-as-code/"""
+        )

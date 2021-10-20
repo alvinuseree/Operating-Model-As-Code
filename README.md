@@ -31,6 +31,12 @@ Run the following instruction to not run a restore of the database and instead a
 python op-model/op-model.py -p partialSync
 ```
 
+### Assess:
+Run the following instruction to deploy the automated assessment:
+```cmd
+python op-model/op-model.py -a assess
+```
+
 ## Tests:
 On execution, the Application runs a series of tests before executing logic. These tests include:
 

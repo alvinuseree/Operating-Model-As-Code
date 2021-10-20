@@ -1,0 +1,22 @@
+{
+    "TypeIds": {
+        "practical-assessment": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "assessment-booklet": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "score-card": "7371aeb2-920f-4a2e-b1b0-17b037356f12"
+    },
+    "RoleIds": {
+        "assessor": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "consultant": "54b52204-997f-4cb3-9974-ea2e140fdf88"
+    },
+    "Attributes": {
+        "task": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "background": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "submissionInstructions": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "availablePoints": "54b52204-997f-4cb3-9974-ea2e140fdf88"
+    },
+    "Relations": {
+        "containAssessment": "54b52204-997f-4cb3-9974-ea2e140fdf88",
+        "nextAssessment": "54b52204-997f-4cb3-9974-ea2e140fdf88"
+    }
+
+}
